@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambiar la narrativa — IED de Barranquilla, CODEBA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-deep: #0F1638;
+    --navy: #1B2A6B;
+    --navy-soft: #2C3B82;
+    --gold: #F2B705;
+    --gold-light: #FBE29A;
+    --gold-ink: #8A5E12;
+    --red: #C23B33;
+    --green: #1F7A4D;
+    --cream: #FBF6EC;
+    --cream-2: #F4EDDC;
+    --ink: #1B1B26;
+    --ink-soft: #565669;
+    --white: #FFFFFF;
+    --radius-card: 6px;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Work Sans', -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.12;
+    margin: 0;
+  }
+
+  p { margin: 0; }
+
+  .wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .hidden { display: none !important; }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 38%, #6E4A16 72%, var(--gold) 100%);
+    padding: 64px 0 88px;
+    color: var(--white);
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1.5px 1.5px at 12% 18%, rgba(255,255,255,.55), transparent),
+      radial-gradient(1.5px 1.5px at 28% 8%, rgba(255,255,255,.4), transparent),
+      radial-gradient(2px 2px at 68% 14%, rgba(255,255,255,.5), transparent),
+      radial-gradient(1.5px 1.5px at 84% 22%, rgba(255,255,255,.35), transparent),
+      radial-gradient(1.5px 1.5px at 45% 26%, rgba(255,255,255,.45), transparent),
+      radial-gradient(1.5px 1.5px at 92% 6%, rgba(255,255,255,.4), transparent);
+    background-repeat: no-repeat;
+    opacity: .8;
+    pointer-events: none;
+  }
+
+  .hero-glow {
+    position: absolute; top: 38%; left: 50%;
+    width: 560px; height: 560px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(242,183,5,.35) 0%, rgba(242,183,5,0) 70%);
+    filter: blur(4px);
+    pointer-events: none;
+    animation: glow-breathe 7s ease-in-out infinite;
+  }
+  
+  @keyframes glow-breathe {
+    0%, 100% { opacity: .6; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+  }
+
+  .hero-inner {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    opacity: 0;
+    animation: rise-in .9s ease-out .15s forwards;
+  }
+  
+  @keyframes rise-in {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .crest {
+    width: 160px; 
+    margin: 0 auto 24px; 
+    display: block; 
+    border-radius: 8px; 
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    border: 2px solid rgba(255,255,255,0.15);
+    /* Improve image rendering quality */
+    image-rendering: -webkit-optimize-contrast;
+  }
+
+  .hero-date {
+    font-family: var(--font-body); font-weight: 600; font-size: .95rem;
+    letter-spacing: .04em; color: var(--gold-light); margin-bottom: 14px;
+  }
+
+  .hero h1 { font-size: clamp(2.1rem, 6.4vw, 3.4rem); max-width: 15ch; color: var(--white); }
+  .hero-lede { max-width: 46ch; margin-top: 20px; font-size: 1.08rem; color: rgba(255,255,255,.88); }
+
+  .hero-theme {
+    margin-top: 28px; display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.28);
+    padding: 9px 18px; border-radius: 999px; font-size: .9rem; color: var(--white);
+  }
+  .hero-theme strong { color: var(--gold-light); font-weight: 600; }
+
+  .hero-actions { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+
+  .btn {
+    font-family: var(--font-body); font-weight: 600; font-size: .98rem;
+    padding: 13px 26px; border-radius: 4px; border: 1px solid transparent;
+    cursor: pointer; text-decoration: none; display: inline-block;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-solid { background: var(--gold); color: var(--navy-deep); }
+  .btn-solid:hover { box-shadow: 0 8px 20px rgba(242,183,5,.35); }
+  .btn-outline { background: transparent; color: var(--white); border-color: rgba(255,255,255,.5); }
+  .btn-outline:hover { border-color: var(--white); }
+  
+  .btn-admin {
+    background: transparent; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.3);
+    font-size: 0.8rem; padding: 8px 16px; margin-top: 24px; border-radius: 999px;
+    transition: background .2s ease, color .2s ease; cursor: pointer;
+  }
+  .btn-admin:hover { background: rgba(255,255,255,0.1); color: var(--white); }
+
+  section { padding: 72px 0; }
+  .kicker-num { font-family: var(--font-display); font-size: .95rem; font-weight: 600; color: var(--gold-ink); margin-bottom: 10px; }
+  h2 { font-size: clamp(1.7rem, 4.4vw, 2.35rem); color: var(--navy); max-width: 20ch; }
+  .section-lede { margin-top: 16px; max-width: 62ch; color: var(--ink-soft); font-size: 1.03rem; }
+
+  .porque { background: var(--cream); }
+  .porque-grid { margin-top: 36px; display: grid; gap: 36px; grid-template-columns: 1fr; }
+  .porque-text p + p { margin-top: 14px; }
+  .porque-text { color: var(--ink); font-size: 1.02rem; max-width: 64ch; }
+  .porque-text strong { color: var(--navy); }
+
+  .cifras { background: var(--navy-deep); color: var(--white); }
+  .cifras h2 { color: var(--white); }
+  .cifras .section-lede { color: rgba(255,255,255,.72); }
+
+  .stat-hero { margin-top: 40px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,.14); }
+  .stat-hero .num { font-family: var(--font-display); font-weight: 600; font-size: clamp(3.2rem, 12vw, 5.2rem); color: var(--gold-light); line-height: 1; }
+  .stat-hero .label { margin-top: 10px; max-width: 46ch; color: rgba(255,255,255,.85); font-size: 1.02rem; }
+
+  .stat-grid { margin-top: 32px; display: grid; grid-template-columns: 1fr; gap: 1px; background: rgba(255,255,255,.14); }
+  .stat-item { background: var(--navy-deep); padding: 24px 22px; border-left: 3px solid var(--gold); }
+  .stat-item:nth-child(2) { border-left-color: var(--red); }
+  .stat-item:nth-child(3) { border-left-color: var(--green); }
+  .stat-item:nth-child(4) { border-left-color: var(--gold-light); }
+  .stat-item .num { font-family: var(--font-display); font-size: 2rem; font-weight: 600; color: var(--white); }
+  .stat-item .label { margin-top: 6px; font-size: .92rem; color: rgba(255,255,255,.72); }
+
+  /* ---------- FASES (With background slicing) ---------- */
+  .camino { background: var(--white); }
+  .fases-grid { margin-top: 40px; display: grid; grid-template-columns: 1fr; gap: 32px; }
+  .fase-card {
+    background: var(--cream); border-radius: var(--radius-card); overflow: hidden;
+    border: 1px solid #EBE4D5; box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; 
+    display: flex; flex-direction: column;
+  }
+  .fase-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); border-color: var(--gold-light);}
+  
+  .fase-img {
+    width: 100%;
+    height: 260px;
+    background-image: url('image_2.png'); /* Sliced collage */
+    background-size: 300% 100%;
+    background-repeat: no-repeat;
+  }
+  
+  /* Slicing the composite image into three sections */
+  .fase-1 { background-position: 0% 50%; }
+  .fase-2 { background-position: 50% 50%; }
+  .fase-3 { background-position: 100% 50%; }
+
+  .fase-text { padding: 24px; flex: 1; border-top: 3px solid var(--gold); }
+  .fase-text h3 { color: var(--navy); font-size: 1.25rem; margin-bottom: 12px; }
+  .fase-text p { color: var(--ink-soft); font-size: 1rem; }
+
+  .ayuda { background: var(--cream); }
+  .ayuda-urgente {
+    margin-top: 30px; background: var(--red); color: var(--white); padding: 22px 24px;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; border-radius: var(--radius-card);
+  }
+  .ayuda-urgente .txt strong { display: block; font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; }
+  .ayuda-urgente .txt span { font-size: .92rem; color: rgba(255,255,255,.88); }
+  .ayuda-urgente a { background: var(--white); color: var(--red); font-weight: 700; text-decoration: none; padding: 12px 24px; border-radius: 4px; white-space: nowrap; }
+
+  .ayuda-list { margin-top: 28px; display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .ayuda-card {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    background: var(--white); border-left: 4px solid var(--navy); padding: 18px 20px;
+    text-decoration: none; color: var(--ink); transition: background .15s ease; border-radius: 0 var(--radius-card) var(--radius-card) 0;
+  }
+  .ayuda-card:hover { background: var(--cream-2); }
+  .ayuda-card .nombre { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--navy); }
+  .ayuda-card .detalle { margin-top: 3px; font-size: .9rem; color: var(--ink-soft); }
+  .ayuda-card .accion { flex: none; font-weight: 600; font-size: .92rem; color: var(--navy); border: 1px solid var(--navy); padding: 8px 16px; border-radius: 999px; white-space: nowrap; }
+
+  .contarnos { background: var(--navy); color: var(--white); }
+  .contarnos h2 { color: var(--white); }
+  .contarnos .section-lede { color: rgba(255,255,255,.78); }
+
+  form { margin-top: 32px; background: var(--white); color: var(--ink); padding: 30px; border-radius: var(--radius-card); box-shadow: 0 12px 30px rgba(0,0,0,0.15);}
+  .campo { margin-bottom: 20px; }
+  .campo:last-of-type { margin-bottom: 0; }
+  .campo label { display: block; font-weight: 600; font-size: .92rem; color: var(--navy); margin-bottom: 7px; }
+  input[type="text"], input[type="email"], input[type="password"], textarea, select {
+    width: 100%; font-family: var(--font-body); font-size: 1rem; padding: 12px 14px;
+    border: 1px solid #D8D2C3; background: var(--cream); color: var(--ink); border-radius: 4px;
+  }
+  textarea { min-height: 130px; resize: vertical; }
+
+  .form-submit { margin-top: 16px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .form-submit .btn { background: var(--navy); color: var(--white); border: none; }
+  .form-status { font-size: .92rem; color: var(--ink-soft); padding: 8px; border-radius: 4px;}
+  .form-status.ok { color: var(--green); font-weight: 600; background: #E6F4EA;}
+  .form-status.err { color: var(--red); font-weight: 600; background: #FCE8E6;}
+
+  /* ---------- MODALS & DASHBOARD ---------- */
+  .modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(15, 22, 56, 0.85); z-index: 1000;
+    display: flex; justify-content: center; align-items: center; padding: 20px;
+    backdrop-filter: blur(4px);
+  }
+  .modal-content {
+    background: var(--white); width: 100%; max-width: 800px; border-radius: 8px;
+    padding: 32px; position: relative; max-height: 90vh; overflow-y: auto;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.3); border-top: 4px solid var(--gold);
+  }
+  .modal-close {
+    position: absolute; top: 16px; right: 20px; background: transparent; border: none;
+    font-size: 1.8rem; color: var(--ink-soft); cursor: pointer; font-family: var(--font-body);
+  }
+  .modal-close:hover { color: var(--red); }
+  
+  .dashboard-header {
+    font-family: var(--font-display); color: var(--navy); font-size: 1.8rem; margin-bottom: 24px;
+    border-bottom: 2px solid var(--cream-2); padding-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+  }
+  .dashboard-header .role-badge { font-size: 0.8rem; font-family: var(--font-body); background: var(--navy-soft); color: white; padding: 4px 10px; border-radius: 99px; vertical-align: middle; margin-left: 8px;}
+  
+  .admin-section { margin-bottom: 28px; padding: 20px; background: var(--cream); border: 1px solid #D8D2C3; border-radius: 6px; }
+  .admin-section h3 { font-size: 1.2rem; color: var(--navy-soft); margin-bottom: 16px; border-bottom: 1px solid #D8D2C3; padding-bottom: 8px; }
+  
+  .list-item { background: var(--white); border-left: 4px solid var(--gold); padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.04); border-radius: 4px;}
+  .list-item.resolved { border-left-color: var(--green); opacity: 0.8; }
+  .list-item-header { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 8px; border-bottom: 1px dashed var(--cream-2); padding-bottom: 8px; align-items: center; flex-wrap: wrap; gap: 8px;}
+  .list-item-header strong { color: var(--navy); font-size: 1.05rem; font-family: var(--font-display);}
+  .list-item-body { font-size: 0.95rem; color: var(--ink); margin-bottom: 12px; background: #f9f9f9; padding: 12px; border-radius: 4px; border-left: 2px solid var(--cream-2);}
+  
+  .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em;}
+  .badge-pending { background: #FBE29A; color: #8A5E12; }
+  .badge-approved { background: #C6F6D5; color: #22543D; }
+  .badge-new { background: #FED7D7; color: #822727; }
+  
+  .admin-actions { display: flex; gap: 12px; align-items: center; margin-top: 16px; flex-wrap: wrap;}
+  .btn-small { padding: 6px 12px; font-size: 0.8rem; }
+
+  footer { background: var(--navy-deep); color: rgba(255,255,255,.7); padding: 48px 0 36px; text-align: center; font-size: .88rem; }
+  footer strong { color: var(--white); display: block; font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 4px; }
+
+  @media (min-width:780px) {
+    section { padding: 100px 0; }
+    .porque-grid { grid-template-columns: 1.3fr .9fr; align-items: start; }
+    .stat-grid { grid-template-columns: repeat(4,1fr); }
+    .fases-grid { grid-template-columns: repeat(3, 1fr); }
+    .cuidar-list { grid-template-columns: 1fr 1fr; gap: 1px; }
+    .ayuda-urgente { padding: 26px 32px; }
+    form { padding: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <!-- Escudo de Alta Calidad -->
+    <img src="watermarked_img_803300908021976840.jpg" alt="Logo IED CODEBA" class="crest">
+    
+    <p class="hero-date">10 de septiembre</p>
+    <h1>Nadie tiene que atravesar esto en silencio</h1>
+    <p class="hero-lede">En el Colegio de Barranquilla — CODEBA creemos que hablar de lo que sentimos salva vidas. Esta página existe para que sepas que no estás solo o sola, y para que encuentres ayuda real y cercana.</p>
+    <p class="hero-theme">Tema mundial 2026: <strong>«Cambiar la narrativa»</strong></p>
+    <div class="hero-actions">
+      <a class="btn btn-solid" href="#ayuda">Ver líneas de ayuda</a>
+      <a class="btn btn-outline" href="#contarnos">Contarnos cómo me siento</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="porque">
+    <div class="wrap">
+      <p class="kicker-num">Por qué hacemos esto</p>
+      <h2>El silencio también hace daño</h2>
+      <div class="porque-grid">
+        <div class="porque-text">
+          <p>Cada 10 de septiembre se conmemora el <strong>Día Mundial para la Prevención del Suicidio</strong>, una fecha impulsada por la Asociación Internacional para la Prevención del Suicidio y respaldada por la Organización Mundial de la Salud. El lema de este ciclo, <strong>«Cambiar la narrativa»</strong>, invita a dejar de esconder lo que sentimos y a pedir ayuda sin miedo ni vergüenza.</p>
+          <p>Como comunidad educativa, queremos ser parte de ese cambio. En esta página vas a encontrar cifras reales sobre lo que está pasando, ideas concretas para cuidarnos entre compañeros y compañeras, las líneas de ayuda profesional disponibles en Barranquilla y en Colombia, y un espacio para escribirnos cuando algo te pese.</p>
+        </div>
+        <div class="porque-text">
+          <p>Si hoy te sientes bien, esta información te sirve para cuidar a alguien más. Si no te sientes bien, esta página es para ti primero.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cifras">
+    <div class="wrap">
+      <p class="kicker-num" style="color:var(--gold-light)">Lo que dicen las cifras</p>
+      <h2>No lo decimos para asustar, sino para dimensionarlo</h2>
+      <p class="section-lede">Muchas personas cargan esto en silencio. Estas cifras muestran que el problema es real, es grande, y que hablar de él es parte de la solución.</p>
+
+      <div class="stat-hero">
+        <p class="num">727.000</p>
+        <p class="label">personas mueren por suicidio cada año en el mundo, según los informes más recientes de la Organización Mundial de la Salud. Se estima que, por cada muerte, ocurren muchos más intentos que nunca se registran.</p>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-item">
+          <p class="num">1.594</p>
+          <p class="label">muertes por suicidio se registraron en Colombia entre enero y julio de 2025, según Medicina Legal.</p>
+        </div>
+        <div class="stat-item">
+          <p class="num">82%</p>
+          <p class="label">de esas muertes en Colombia fueron personas de entre 12 y 44 años.</p>
+        </div>
+        <div class="stat-item">
+          <p class="num">28.290</p>
+          <p class="label">intentos de suicidio se reportaron en Colombia en 2025, el 56% en jóvenes de 15 a 29 años.</p>
+        </div>
+        <div class="stat-item">
+          <p class="num">161</p>
+          <p class="label">adolescentes de 12 a 17 años perdieron la vida por esta causa en Colombia solo entre enero y julio de 2025.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="camino" id="camino">
+    <div class="wrap">
+      <p class="kicker-num">El Camino hacia el Bienestar</p>
+      <h2>Cada fase es un paso hacia la luz</h2>
+      <p class="section-lede">Entender lo que vivimos es el primer paso para superarlo. A continuación, te compartimos las etapas por las que muchas personas atraviesan antes de encontrar sanación y paz.</p>
+      
+      <div class="fases-grid">
+        <div class="fase-card">
+          <div class="fase-img fase-1" aria-label="Persona en reflexión mirando por la ventana"></div>
+          <div class="fase-text">
+            <h3>1. Desahogo y Reflexión</h3>
+            <p>El proceso inicia reconociendo el dolor. Aceptar que estás enfrentando una tormenta interna y permitirte sentir es vital. Es el momento en el que el silencio empieza a romperse y la reflexión abre puertas.</p>
+          </div>
+        </div>
+        
+        <div class="fase-card">
+          <div class="fase-img fase-2" aria-label="Persona pensativa buscando apoyo"></div>
+          <div class="fase-text">
+            <h3>2. Búsqueda y Acompañamiento</h3>
+            <p>Descubres que no tienes que cargar el peso a solas. Alzar la voz para conectar con la comunidad CODEBA y pedir apoyo profesional te brinda el ancla necesaria para mantenerte firme.</p>
+          </div>
+        </div>
+
+        <div class="fase-card">
+          <div class="fase-img fase-3" aria-label="Persona escribiendo, encontrando claridad"></div>
+          <div class="fase-text">
+            <h3>3. Acción y Resolución</h3>
+            <p>Con la orientación adecuada, comienzas a reconstruir la esperanza. Escribir nuevos capítulos en tu vida se vuelve posible gracias a la ayuda recibida y tu propia fortaleza interna.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ayuda" id="ayuda">
+    <div class="wrap">
+      <p class="kicker-num">Líneas de ayuda</p>
+      <h2>Ayuda profesional, ahora mismo</h2>
+      <p class="section-lede">Si tú o alguien que conoces está en peligro inmediato, no esperes a escribirnos: llama ya.</p>
+
+      <div class="ayuda-urgente">
+        <div class="txt">
+          <strong>Emergencia inmediata</strong>
+          <span>Riesgo de vida ahora mismo — línea nacional de emergencias</span>
+        </div>
+        <a href="tel:123">Llamar al 123</a>
+      </div>
+
+      <div class="ayuda-list">
+        <a class="ayuda-card" id="dynamic-phone-link" href="tel:+576053399999">
+          <div>
+            <p class="nombre">Línea de la Vida — Barranquilla</p>
+            <p class="detalle" id="dynamic-phone-text">(605) 339 9999 — atención 24 horas</p>
+          </div>
+          <span class="accion">Llamar</span>
+        </a>
+        <a class="ayuda-card" href="tel:106">
+          <div>
+            <p class="nombre">Línea 106 — El poder de ser escuchado</p>
+            <p class="detalle">Gratuita, confidencial, 24 horas, en toda Colombia</p>
+          </div>
+          <span class="accion">Marcar 106</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contarnos" id="contarnos">
+    <div class="wrap">
+      <p class="kicker-num" style="color:var(--gold-light)">Cuéntanos cómo te sientes</p>
+      <h2>Un espacio seguro para escribir con calma</h2>
+      <p class="section-lede">Nuestro equipo de soporte y orientación está aquí para ti. Envíanos tu mensaje de confianza; no estás solo/a en este proceso.</p>
+
+      <form id="form-contacto">
+        <div class="campo">
+          <label for="form-nombre">Tu nombre o alias</label>
+          <input type="text" id="form-nombre" placeholder="¿Cómo te gustaría que te llamemos?" required autocomplete="off">
+        </div>
+
+        <div class="campo">
+          <label for="form-email">Tu correo electrónico</label>
+          <input type="email" id="form-email" placeholder="Para poder contactarte y apoyarte..." required autocomplete="off">
+        </div>
+
+        <div class="campo">
+          <label for="form-mensaje">Tu mensaje de confianza</label>
+          <textarea id="form-mensaje" placeholder="Escribe con total tranquilidad lo que estás sintiendo. Este es un espacio libre de juicios..." required></textarea>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn btn-solid" id="btn-submit-msg">Enviar mensaje</button>
+          <span class="form-status" id="form-status" role="status" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <strong>IED de Barranquilla — CODEBA</strong>
+    <span>Comunidad CODEBA, cuidándonos</span>
+    <br>
+    <button id="open-auth-btn" class="btn-admin">Acceso Voluntarios / Administradores</button>
+  </div>
+</footer>
+
+<!-- Modal de Autenticación -->
+<div id="auth-modal" class="modal-overlay hidden">
+  <div class="modal-content" style="max-width: 500px;">
+    <button class="modal-close" id="close-auth-btn" aria-label="Cerrar">&times;</button>
+    
+    <div id="login-view">
+      <h2 class="dashboard-header">Acceso de Soporte</h2>
+      <p style="margin-bottom: 20px; color: var(--ink-soft);">Inicia sesión o regístrate para unirte a la red de apoyo CODEBA.</p>
+      
+      <div class="campo">
+        <label for="auth-email">Correo Electrónico</label>
+        <input type="email" id="auth-email" placeholder="ejemplo@codeba.edu.co">
+      </div>
+      <div class="campo">
+        <label for="auth-pass">Contraseña</label>
+        <input type="password" id="auth-pass" placeholder="••••••••">
+      </div>
+      <div class="admin-actions">
+        <button id="btn-login" class="btn btn-solid">Iniciar Sesión</button>
+        <button id="btn-register" class="btn btn-outline" style="color:var(--navy); border-color:var(--navy);">Regístrate</button>
+      </div>
+      <div style="margin-top: 16px;">
+        <span id="auth-error" class="form-status err hidden" style="display:inline-block; width:100%;"></span>
+      </div>
+    </div>
+    
+    <div id="pending-view" class="hidden">
+      <h2 class="dashboard-header">Cuenta en Revisión</h2>
+      <p style="color: var(--ink); margin-bottom: 24px;">Tu cuenta de voluntario está en espera de aprobación por un administrador. Podrás leer los mensajes una vez seas aceptado/a en la red.</p>
+      <button class="btn btn-solid btn-logout">Cerrar Sesión</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal del Dashboard -->
+<div id="dashboard-modal" class="modal-overlay hidden">
+  <div class="modal-content">
+    <button class="modal-close" id="close-dashboard-btn" aria-label="Cerrar">&times;</button>
+    
+    <div class="dashboard-header">
+      <span>Portal CODEBA <span id="user-role-badge" class="role-badge">Admin</span></span>
+      <button class="btn btn-outline btn-small btn-logout" style="color:var(--red); border-color:var(--red);">Cerrar Sesión</button>
+    </div>
+
+    <!-- Admin Panel (Ajustes y Usuarios) -->
+    <div id="admin-tools" class="hidden">
+      <div class="admin-section">
+        <h3>Ajustes Generales (Solo Admin)</h3>
+        <div class="campo">
+          <label for="admin-phone-input">Teléfono "Línea de la Vida"</label>
+          <input type="text" id="admin-phone-input" placeholder="(605) 339 9999">
+        </div>
+        <div class="admin-actions" style="margin-top: 0;">
+          <button id="admin-phone-save" class="btn btn-solid btn-small">Guardar Cambios</button>
+          <span id="admin-phone-status" class="form-status hidden"></span>
+        </div>
+      </div>
+
+      <div class="admin-section">
+        <h3>Gestión de Voluntarios</h3>
+        <div id="volunteers-list">Cargando voluntarios...</div>
+      </div>
+    </div>
+
+    <!-- Support Panel (Mensajes) -->
+    <div id="support-tools" class="admin-section hidden">
+      <h3>Mensajes de Confianza (Recibidos)</h3>
+      <p style="font-size:0.9rem; color:var(--ink-soft); margin-bottom: 16px;">Lee y acompaña a quienes nos han escrito.</p>
+      <div id="messages-list">Cargando mensajes...</div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+  import { 
+    getAuth, signInAnonymously, signInWithCustomToken, 
+    createUserWithEmailAndPassword, signInWithEmailAndPassword,
+    signOut, onAuthStateChanged 
+  } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+  import { 
+    getFirestore, doc, getDoc, setDoc, updateDoc, 
+    onSnapshot, collection, addDoc, getDocs 
+  } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+  // App ID provided by environment or default
+  const appId = typeof __app_id !== 'undefined' ? __app_id : 'codeba-app-id';
+  let firebaseConfig = null;
+  try {
+    if (typeof __firebase_config !== 'undefined') {
+      firebaseConfig = JSON.parse(__firebase_config);
+    }
+  } catch(e) { console.error("Error parsing firebase config", e); }
+
+  if (!firebaseConfig) {
+    firebaseConfig = { apiKey: "MOCK_API_KEY", projectId: "mock-project", appId: "mock-app" };
+  }
+
+  // Inicializar Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+
+  // Referencias obligatorias de Firestore respetando las reglas de seguridad public/data
+  const messagesRef = collection(db, 'artifacts', appId, 'public', 'data', 'messages');
+  const volunteersRef = collection(db, 'artifacts', appId, 'public', 'data', 'volunteers');
+  const settingsRef = doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'global');
+
+  // DOM Elements
+  const authModal = document.getElementById('auth-modal');
+  const dashboardModal = document.getElementById('dashboard-modal');
+  const loginView = document.getElementById('login-view');
+  const pendingView = document.getElementById('pending-view');
+  
+  const adminTools = document.getElementById('admin-tools');
+  const supportTools = document.getElementById('support-tools');
+  const userRoleBadge = document.getElementById('user-role-badge');
+  const authError = document.getElementById('auth-error');
+
+  // Tu correo de Admin
+  const MY_ADMIN_EMAIL = 'TU_CORREO_AQUI@gmail.com'; // <-- ¡CAMBIA ESTO POR TU CORREO DE GMAIL!
+
+  let currentRole = null;
+  let currentStatus = null;
+
+  async function performInitialAuth() {
+    try {
+      if (typeof __initial_auth_token !== 'undefined') {
+        await signInWithCustomToken(auth, __initial_auth_token);
+      } else {
+        await signInAnonymously(auth);
+      }
+    } catch (err) {
+      console.warn("Auth initialization error", err);
+    }
+  }
+
+  function showError(msg) {
+    authError.textContent = msg;
+    authError.classList.remove('hidden');
+    setTimeout(() => authError.classList.add('hidden'), 4000);
+  }
+
+  // Verificar el estado de la sesión
+  onAuthStateChanged(auth, async (user) => {
+    if (user && !user.isAnonymous && user.email) {
+      try {
+        const userDoc = await getDoc(doc(volunteersRef, user.uid));
+        if (userDoc.exists()) {
+          const data = userDoc.data();
+          currentRole = data.role;
+          currentStatus = data.status;
+        } else {
+          // Lógica estricta de asignación de roles la primera vez que se entra a la db
+          const emailLower = user.email.toLowerCase();
+          const isAdmin = emailLower === MY_ADMIN_EMAIL.toLowerCase() || emailLower.includes('admin') || emailLower.includes('+admin');
+          
+          currentRole = isAdmin ? 'admin' : 'support';
+          currentStatus = isAdmin ? 'approved' : 'pending';
+          
+          await setDoc(doc(volunteersRef, user.uid), { 
+            email: user.email, 
+            role: currentRole, 
+            status: currentStatus,
+            createdAt: new Date().toISOString()
+          });
+        }
+        handleUIForUser();
+      } catch (err) {
+        console.error("Error fetching user data", err);
+      }
+    } else {
+      currentRole = null;
+      currentStatus = null;
+      closeModals();
+    }
+  });
+
+  await performInitialAuth();
+
+  function handleUIForUser() {
+    authModal.classList.add('hidden');
+    loginView.classList.add('hidden');
+    
+    if (currentStatus === 'pending') {
+      authModal.classList.remove('hidden');
+      pendingView.classList.remove('hidden');
+    } else if (currentStatus === 'approved') {
+      dashboardModal.classList.remove('hidden');
+      userRoleBadge.textContent = currentRole === 'admin' ? 'Administrador' : 'Soporte CODEBA';
+      userRoleBadge.style.background = currentRole === 'admin' ? 'var(--red)' : 'var(--navy-soft)';
+      
+      supportTools.classList.remove('hidden');
+      loadMessages();
+
+      if (currentRole === 'admin') {
+        adminTools.classList.remove('hidden');
+        loadSettings();
+        loadVolunteers();
+      } else {
+        adminTools.classList.add('hidden');
+      }
+    }
+  }
+
+  function closeModals() {
+    authModal.classList.add('hidden');
+    dashboardModal.classList.add('hidden');
+    loginView.classList.remove('hidden');
+    pendingView.classList.add('hidden');
+    adminTools.classList.add('hidden');
+    supportTools.classList.add('hidden');
+  }
+
+  document.getElementById('open-auth-btn').addEventListener('click', () => {
+    if (currentRole && currentStatus) { handleUIForUser(); } 
+    else { authModal.classList.remove('hidden'); loginView.classList.remove('hidden'); }
+  });
+
+  document.getElementById('close-auth-btn').addEventListener('click', () => authModal.classList.add('hidden'));
+  document.getElementById('close-dashboard-btn').addEventListener('click', () => dashboardModal.classList.add('hidden'));
+
+  document.querySelectorAll('.btn-logout').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      await signOut(auth);
+      await performInitialAuth(); 
+    });
+  });
+
+  document.getElementById('btn-register').addEventListener('click', async () => {
+    const email = document.getElementById('auth-email').value.trim();
+    const pass = document.getElementById('auth-pass').value.trim();
+    if(!email || pass.length < 6) return showError("Usa un email válido y una contraseña de al menos 6 caracteres.");
+    
+    try {
+      const cred = await createUserWithEmailAndPassword(auth, email, pass);
+      const emailLower = email.toLowerCase();
+      const isAdmin = emailLower === MY_ADMIN_EMAIL.toLowerCase() || emailLower.includes('admin') || emailLower.includes('+admin');
+      const role = isAdmin ? 'admin' : 'support';
+      const status = isAdmin ? 'approved' : 'pending';
+      
+      await setDoc(doc(volunteersRef, cred.user.uid), {
+        email, role, status, createdAt: new Date().toISOString()
+      });
+    } catch(err) {
+      showError("Error al registrarse. Quizás el correo ya esté en uso o mal escrito.");
+    }
+  });
+
+  document.getElementById('btn-login').addEventListener('click', async () => {
+    const email = document.getElementById('auth-email').value.trim();
+    const pass = document.getElementById('auth-pass').value.trim();
+    if(!email || !pass) return showError("Ingresa tu correo y contraseña.");
+    
+    try {
+      await signInWithEmailAndPassword(auth, email, pass);
+    } catch(err) {
+      showError("Credenciales incorrectas.");
+    }
+  });
+
+  onSnapshot(settingsRef, (docSnap) => {
+    if(docSnap.exists() && docSnap.data().phone) {
+      const phone = docSnap.data().phone;
+      document.getElementById('dynamic-phone-text').textContent = `${phone} — atención 24 horas`;
+      document.getElementById('dynamic-phone-link').href = `tel:${phone.replace(/\s+/g, '')}`;
+    }
+  }, (err) => console.warn("Settings fetch error:", err));
+
+  const contactForm = document.getElementById('form-contacto');
+  const contactStatus = document.getElementById('form-status');
+
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!auth.currentUser) return; // Regla estricta 3: Autenticación activa
+
+    const nombre = document.getElementById('form-nombre').value.trim();
+    const email = document.getElementById('form-email').value.trim();
+    const mensaje = document.getElementById('form-mensaje').value.trim();
+
+    const btnSubmit = document.getElementById('btn-submit-msg');
+    btnSubmit.textContent = 'Enviando...';
+    btnSubmit.disabled = true;
+
+    try {
+      await addDoc(messagesRef, {
+        nombre, email, mensaje,
+        status: 'new',
+        timestamp: new Date().toISOString()
+      });
+      contactForm.reset();
+      contactStatus.className = 'form-status ok';
+      contactStatus.textContent = 'Tu mensaje ha sido enviado con éxito. Gracias por confiar en nosotros.';
+    } catch(err) {
+      contactStatus.className = 'form-status err';
+      contactStatus.textContent = 'Ocurrió un error de conexión. Usa nuestras líneas de ayuda directas arriba.';
+      console.error(err);
+    } finally {
+      btnSubmit.textContent = 'Enviar mensaje';
+      btnSubmit.disabled = false;
+    }
+  });
+
+  document.getElementById('admin-phone-save').addEventListener('click', async () => {
+    if(currentRole !== 'admin') return;
+    const phone = document.getElementById('admin-phone-input').value;
+    const sts = document.getElementById('admin-phone-status');
+    sts.classList.remove('hidden');
+    sts.textContent = "Guardando...";
+    try {
+      await setDoc(settingsRef, { phone }, { merge: true });
+      sts.textContent = "Teléfono actualizado exitosamente.";
+      sts.className = "form-status ok";
+    } catch(e) {
+      sts.textContent = "Error al guardar.";
+      sts.className = "form-status err";
+    }
+    setTimeout(() => sts.classList.add('hidden'), 3000);
+  });
+
+  async function loadSettings() {
+    const snap = await getDoc(settingsRef);
+    if(snap.exists() && snap.data().phone) {
+      document.getElementById('admin-phone-input').value = snap.data().phone;
+    }
+  }
+
+  async function loadVolunteers() {
+    const list = document.getElementById('volunteers-list');
+    list.innerHTML = '<p style="color:var(--ink-soft);">Cargando red de apoyo...</p>';
+    try {
+      const snap = await getDocs(volunteersRef);
+      if(snap.empty) { list.innerHTML = '<p>No hay voluntarios registrados aún.</p>'; return; }
+      
+      let html = '';
+      const vols = [];
+      snap.forEach(d => vols.push({id: d.id, ...d.data()}));
+      
+      vols.forEach(v => {
+        if(v.role === 'admin') return; // Ocultamos admins
+        const isAppr = v.status === 'approved';
+        html += `
+          <div class="list-item">
+            <div class="list-item-header">
+              <strong>${v.email}</strong>
+              <span class="badge ${isAppr ? 'badge-approved' : 'badge-pending'}">${isAppr ? 'ACTIVO' : 'EN ESPERA'}</span>
+            </div>
+            <div class="admin-actions">
+              ${!isAppr ? `<button class="btn btn-outline btn-small" style="color:var(--green);border-color:var(--green);" onclick="window.updateVolStatus('${v.id}', 'approved')">Aprobar Acceso</button>` : ''}
+              ${isAppr ? `<button class="btn btn-outline btn-small" style="color:var(--red);border-color:var(--red);" onclick="window.updateVolStatus('${v.id}', 'pending')">Suspender</button>` : ''}
+            </div>
+          </div>
+        `;
+      });
+      list.innerHTML = html || '<p>No hay voluntarios de soporte (solo administradores).</p>';
+    } catch(err) {
+      list.innerHTML = '<p style="color:var(--red);">Error al cargar la lista.</p>';
+      console.error(err);
+    }
+  }
+
+  window.updateVolStatus = async (uid, newStatus) => {
+    if(currentRole !== 'admin') return;
+    try {
+      await updateDoc(doc(volunteersRef, uid), { status: newStatus });
+      loadVolunteers(); // refrescar
+    } catch(e) { console.error(e); }
+  };
+
+  async function loadMessages() {
+    const list = document.getElementById('messages-list');
+    list.innerHTML = '<p style="color:var(--ink-soft);">Cargando mensajes de confianza...</p>';
+    try {
+      const snap = await getDocs(messagesRef);
+      if(snap.empty) { list.innerHTML = '<p>No hay mensajes en la bandeja.</p>'; return; }
+      
+      const msgs = [];
+      snap.forEach(d => msgs.push({id: d.id, ...d.data()}));
+      
+      // Ordenamiento simple en memoria por fecha descendente (Regla 2)
+      msgs.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+      let html = '';
+      msgs.forEach(m => {
+        const isResolved = m.status === 'resolved';
+        const dateStr = new Date(m.timestamp).toLocaleString('es-CO');
+        html += `
+          <div class="list-item ${isResolved ? 'resolved' : ''}">
+            <div class="list-item-header">
+              <strong>${m.nombre} &bull; <span style="font-weight:400; font-family:var(--font-body);">${m.email}</span></strong>
+              <span class="badge ${isResolved ? 'badge-approved' : 'badge-new'}">${isResolved ? 'ATENDIDO' : 'POR LEER'}</span>
+            </div>
+            <div class="list-item-body">"${m.mensaje}"</div>
+            <div class="list-item-header" style="border:none; margin:0; padding:0;">
+              <span>Recibido: ${dateStr}</span>
+              ${!isResolved ? `<button class="btn btn-solid btn-small" onclick="window.markResolved('${m.id}')">Marcar Atendido</button>` : ''}
+            </div>
+          </div>
+        `;
+      });
+      list.innerHTML = html;
+    } catch(err) {
+      list.innerHTML = '<p style="color:var(--red);">Error al cargar la bandeja.</p>';
+      console.error(err);
+    }
+  }
+
+  window.markResolved = async (msgId) => {
+    if(currentStatus !== 'approved') return;
+    try {
+      await updateDoc(doc(messagesRef, msgId), { status: 'resolved' });
+      loadMessages(); // refrescar
+    } catch(e) { console.error(e); }
+  }
+</script>
+
+</body>
+</html>
